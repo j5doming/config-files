@@ -1,11 +1,19 @@
 
 function parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+    branch_name=$(git branch --show-current 2>&1)
+    
+    if [ $? -ne 0 ]; then
+        echo ""
+    else
+        echo "[${branch_name}]"
+    fi
+
+    # git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
 }
 
 setopt PROMPT_SUBST
 if [ "$(uname)" = "Darwin" ]; then
-    PROMPT='[%n]:%F{blue}%~%f %F{green}${parse_git_branch}%f %% '
+    PROMPT='[%n]:%F{blue}%~%f %F{green}$(parse_git_branch)%f %F{red}%%%f '
 fi
 
 export CLICOLORS=1
