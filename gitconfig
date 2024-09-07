@@ -1,0 +1,28 @@
+[user]
+	email = juan.dominguez.bdm@gmail.com
+	name = Juan Dominguez
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
+[core]
+	excludesfile = ~/.gitignore_global
+	autocrlf = input
+[credential]
+	helper = osxkeychain
+[init]
+	defaultBranch = master
+[color "status"]
+    added = green
+    changed = red
+    untracked = blue
+[color]
+    ui = true
+[push]
+    default = simple
+[pull]
+	ff = only
